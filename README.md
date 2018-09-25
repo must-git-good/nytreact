@@ -1,1 +1,1 @@
-# nytreact
+## New York Times Search Helper

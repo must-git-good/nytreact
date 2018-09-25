@@ -1,4 +1,5 @@
 import React from 'react';
+import './search.css';
 
 
 class SearchForm extends React.Component {
@@ -10,6 +11,7 @@ class SearchForm extends React.Component {
 
     render() {
         return (
+            <div className="searchSection">
             <form>
                 <h3>Search:</h3>
                 <div className="form-group">
@@ -25,6 +27,7 @@ class SearchForm extends React.Component {
                     <input type="text/date" className="form-control" id="end-year" placeholder="YYYY" />
                 </div>
             </form>
+            </div>
         )
     }
 }

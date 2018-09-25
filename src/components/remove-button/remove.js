@@ -11,7 +11,7 @@ class RemoveButton extends React.Component {
         return (
 
             <div>
-                <button>Remove!</button>
+                <button>X</button>
             </div>
         )
     }

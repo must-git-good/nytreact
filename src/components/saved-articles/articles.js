@@ -11,15 +11,9 @@ class Articles extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="savedSection">
                 <h3>Saved Articles:</h3>
                 <ul>
-                    <li>Saved Article</li>
-                    <RemoveButton/>
-                    <li>Saved Article</li>
-                    <RemoveButton/>
-                    <li>Saved Article</li>
-                    <RemoveButton/>
                     <li>Saved Article</li>
                     <RemoveButton/>
                 </ul>

@@ -11,23 +11,11 @@ class ResultsCard extends React.Component {
     render() {
         return (
 
-            <div>
+            <div className="resultsSection">
                 <h3>Results:</h3>
                 <ul>
                     <li>
-                        Result One  <SaveButton />
-                    </li>
-                    <li>
-                        Result Two <SaveButton />
-                    </li>
-                    <li>
-                        Result Three  <SaveButton />
-                    </li>
-                    <li>
-                        Result Four <SaveButton />
-                    </li>
-                    <li>
-                        Result Five   <SaveButton />
+                        Results: <SaveButton />
                     </li>
                 </ul>
             </div>

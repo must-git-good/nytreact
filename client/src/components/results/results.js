@@ -68,32 +68,91 @@ class ResultsCard extends React.Component {
     //     };
     // };
 
+    renderResults = () => {
+        console.log("this.props.articles: ", this.props.articles);
+        if (this.props.articles.length === 0) {
+            return (<span>  </span>)
+        }
+        else {
+            return (
+                <ul>
+                    <li>
+                        <a href={this.props.articles[0].web_url}>
+                            {this.props.articles[0].headline.main}
+                        </a>
+                        <SaveButton />
+                    </li>
+                    <li>
+                        <a href={this.props.articles[1].web_url}>
+                            {this.props.articles[1].headline.main}
+                        </a>
+                        <SaveButton />
+                    </li>
+                    <li>
+                        <a href={this.props.articles[2].web_url}>
+                            {this.props.articles[2].headline.main}
+                        </a>
+                        <SaveButton />
+                    </li>
+                    <li>
+                        <a href={this.props.articles[3].web_url}>
+                            {this.props.articles[3].headline.main}
+                        </a>
+                        <SaveButton />
+                    </li>
+                    <li>
+                        <a href={this.props.articles[4].web_url}>
+                            {this.props.articles[4].headline.main}
+                        </a>
+                        <SaveButton />
+                    </li>
+                </ul>
+            )
+        }
+        // console.log("renderResults active)");
+        // if(this.props.articles.docs.length > 0){
+        //     console.log("props recvd");
+        //     return(
+        //         <ul>
+        //             Test.
+        //         </ul>
+        //     )
+        // } else if (this.props.articles.docs  0){
+        //     console.log("NO PROPS");
+        //     return (<ul></ul>)
+        // }
+
+
+
+
+    };
+
+    // componentDidUpdate = () => {
+    //     console.log("update flag"); 
+    //     if(this.props){
+    //         console.log("props recvd");
+    //         this.renderResults();
+    //     } else if (!this.props){
+    //         console.log("NO PROPS");
+    //     }
+    // }
+
+
 
 
 
     render() {
         return (
-            <div className="resultsSection">
+            <div 
+            className="resultsSection"
+            >
                 <h3>Results:</h3>
-                <ul>
-                    <li>
-                        {this.props.articles}
-                        <SaveButton />
-                    </li>
-                    <li>
-                        {this.props.articles}
-                        <SaveButton />
-                    </li>
-                </ul>
+                {this.renderResults()}
             </div>
         )
     };
 }
 
-
-ResultsCard.defaultProps = {
-    name: "No news loaded yet!"
-};
 
 
 export default ResultsCard;

@@ -8,7 +8,7 @@ import API from './utils/API';
 class App extends Component {
 
   state = {
-    articles: []
+    articles: [""]
   }
 
   summonArticles = (topic,yearStart,endStart) => {
@@ -18,6 +18,8 @@ class App extends Component {
           articles: res
         });
         console.log(this.state.articles);
+        console.log(this.state.articles.data);
+        console.log(this.state.articles.data.response.docs);
       })
       .catch(err => console.log("Error in API getArticle call: ",err));
   }
@@ -27,7 +29,9 @@ class App extends Component {
       <div className="App">
         <Jumbotron />
         <SearchForm clickHandler={this.summonArticles} />
-        <ResultsCard>   </ResultsCard>
+        <ResultsCard value={this.state.articles} > 
+        
+        </ResultsCard>
         <Articles/>
       </div>
     );

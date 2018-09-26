@@ -3,6 +3,7 @@
 //Dependencies://
 const express = require('express')
 const bodyParser = require('body-parser')
+const path = require('path')
 const axios = require('axios')
 const env = require('dotenv').config()
 const keys = require('./keys')
@@ -13,20 +14,28 @@ const PORT = process.env.PORT || 3001;
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+}
 
-console.log("==========: ", keys.nytapi)
 
-// Routing: //
-app.get("/", (req, res) => res.send("Connected"));
+// API ROUTES HERE:
 
 app.post("/api/nyt", (req, res) => 
-    axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${req.body.topic}&begin_date=${req.body.yearStart}&end_date=${req.body.endStart}&api-key=${keys.nytapi.key}`)
+    axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${req.body.topic}&begin_date=${req.body.yearStart}0101&end_date=${req.body.endStart}0101&api-key=${keys.nytapi.key}`)
     .then(article => {
         res.json(article.data);
         console.log(JSON.stringify(article.data));
     })
     .catch(err => console.log(err))
 );
+
+// Routing: //
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
+
 
 
 // LISTEN! //

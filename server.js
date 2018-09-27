@@ -7,6 +7,7 @@ const path = require('path')
 const axios = require('axios')
 const env = require('dotenv').config()
 const keys = require('./keys')
+const mongoose = require('mongoose')
 
 // Configuration://
 const app = express()
@@ -19,6 +20,12 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
+// Database: //
+const db = require('./models');
+
+mongoose.connect("mongodb://localhost/nytreact", {useNewUrlParser: true});
+
+
 // API ROUTES HERE:
 
 app.post("/api/nyt", (req, res) => 
@@ -28,6 +35,17 @@ app.post("/api/nyt", (req, res) =>
         console.log(JSON.stringify(article.data));
     })
     .catch(err => console.log(err))
+);
+
+app.post("/api/save", (req, res) => {
+    db.Article.create(req.body)
+    .then((savedItem) => {
+        console.log("database updated!");
+        res.json(savedItem);
+    })
+    .catch(err => {throw(err)});
+
+}
 );
 
 // Routing: //

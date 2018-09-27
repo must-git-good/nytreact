@@ -6,12 +6,10 @@ const ArticleSchema = new Schema({
     title: {
         type: String,
         trim: true,
-        validate: [
-            function(input){
-                return input.length >= SET_VALUE_W_CONST_ABOVE
-            }
-        ]
     },
+    web_url: {
+        type: String,
+    }
 });
 
 const Article = mongoose.model("Article", ArticleSchema);

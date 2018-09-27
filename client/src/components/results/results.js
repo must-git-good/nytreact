@@ -1,11 +1,12 @@
 import React from 'react';
 import SaveButton from '../save-button';
-
+import API from '../../utils/API';
 
 class ResultsCard extends React.Component {
 
     state = {
-        articles: ["No articles accessed yet."]
+        articles: ["No articles accessed yet."],
+        savedArticles: [] 
     }
 
     // componentWillReceiveProps(props){
@@ -68,6 +69,18 @@ class ResultsCard extends React.Component {
     //     };
     // };
 
+    handleSaveSubmit = event => {
+        event.preventDefault();
+        console.log("Save Button: ", (event.target.title));
+        const saveMe = event.target.title;
+        alert(saveMe);
+        API.saveArticle(saveMe)
+        .then(()=>{})
+        .catch((err)=>{throw(err)});
+        // console.log("Save Button: ", (event.target.web_url));
+        // console.log("Save Button: ", event.target.value.headline.main + " " + event.target.value.web_url);
+    };
+
     renderResults = () => {
         console.log("this.props.articles: ", this.props.articles);
         if (this.props.articles.length === 0) {
@@ -79,8 +92,16 @@ class ResultsCard extends React.Component {
                     <li>
                         <a href={this.props.articles[0].web_url}>
                             {this.props.articles[0].headline.main}
+                            <button 
+                            className="saveBtn" 
+                            onClick={this.handleSaveSubmit}
+                            title={ JSON.stringify({headline: this.props.articles[0].headline.main, web_url: this.props.articles[0].web_url }) }
+                            
+                            >Save!</button>
                         </a>
-                        <SaveButton />
+                        <div>
+                            
+                        </div>
                     </li>
                     <li>
                         <a href={this.props.articles[1].web_url}>
@@ -143,8 +164,8 @@ class ResultsCard extends React.Component {
 
     render() {
         return (
-            <div 
-            className="resultsSection"
+            <div
+                className="resultsSection"
             >
                 <h3>Results:</h3>
                 {this.renderResults()}
